@@ -1,18 +1,10 @@
-﻿
-[string]$chocoVersion = $(choco --version)
-[string]$majorRelease = $chocoVersion.Split('.')[1]
-[string]$minorRelease = $chocoVersion.Split('.')[2]
-if (-not $majorRelease.Equals("9") -or -not $minorRelease.Equals("9"))
-{
-    write-host "WARNING: This package has only been tested with Chocolatey 0.9.9" -f "Yellow"
-}
-
-$packageName = 'gradle'
-$version = $env:chocolateyPackageVersion
+﻿$packageName = 'gradle'
+$version = '5.0'
+$checksum = '6157AC9F3410BC63644625B3B3E9E96C963AFD7910AE0697792DB57813EE79A6'
 $url = "https://services.gradle.org/distributions/gradle-$version-bin.zip"
 $installDir = Split-Path -parent $MyInvocation.MyCommand.Definition
 
-Install-ChocolateyZipPackage $packageName $url $installDir
+Install-ChocolateyZipPackage $packageName $url $installDir -Checksum $checksum -ChecksumType 'sha256'
 
 $gradle_home = Join-Path $installDir "$packageName-$version"
 $gradle_bat = Join-Path $gradle_home 'bin/gradle.bat'

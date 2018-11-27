@@ -1,5 +1,5 @@
 ﻿$packageName = 'gradle'
-$version = $env:chocolateyPackageVersion
+$version = '5.0'
 
 $installDir = Split-Path -parent $MyInvocation.MyCommand.Definition
 
